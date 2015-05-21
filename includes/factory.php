@@ -189,7 +189,7 @@ class WPMeetupFactory {
                     $event_location_address = __($event_raw->venue->address_1) . '<br />' . __($event_raw->venue->city) . ', ' . __($event_raw->venue->state) . ' ' . __($event_raw->venue->zip);
                     $event_location .= $event_location_address;
                 }
-                $event_map = '<a href="https://maps.google.com/?q=' . $event_raw->venue->lat . ',' . $event_raw->venue->lon . '">View Map</a>';
+                $event_map = '<a href="https://maps.google.com/?q=' . $event_raw->venue->lat . ',' . $event_raw->venue->lon . '">Ver en el mapa</a>';
                 $output .= '<div class="meetup-backlink-venue">' . PHP_EOL;
                 $output .= '<h3>¿Dónde?</h3>' . PHP_EOL;
                 $output .= '<p>' . $event_location . '</p>' . PHP_EOL;
