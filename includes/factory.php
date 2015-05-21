@@ -80,7 +80,23 @@ class WPMeetupFactory {
         }
         $event->utc_offset = 0;
 
-        // ACA SE LE PUEDE LLENAR AL EVENTO CON LA DATA DE LOS RSVP
+        // ACA SE LE PUEDE LLENAR AL EVENTO CON LA DATA DE LOS RSVP <<<
+
+        $rsvps_object = $this->core->api->get_results(array('event_id'=>$event->id,), 'rsvps');
+        $event->rsvps_json = json_encode($rsvps_object);
+
+        if(isset($rsvps_object->results)) {
+            $rsvps = '<ul>' . PHP_EOL;
+            foreach ($rsvps_object->results as $result) {
+                $rsvps .= '<li>' . $result->member->name . ' - ' . $result->response . '</li>' . PHP_EOL;
+            }
+            $rsvps .= '</ul>';
+            if($rsvps_object->meta->count > 0) {
+                $event->rsvps = $rsvps;
+            }
+        }
+
+        // >>>
 
         $data = array(
             'wpm_event_id' => $event->id,
@@ -198,6 +214,20 @@ class WPMeetupFactory {
 
             }
         }
+        if (isset($event_raw->rsvps)) {
+
+            $output .= '<div class="rsvps-wrapper">' . PHP_EOL;
+            $output .= '<h3>¿Quienes van?</h3>' . PHP_EOL;
+            $output .= $event_raw->rsvps . PHP_EOL;
+            $output .= '</div>' . PHP_EOL;
+        }
+        /*if (isset($event_raw->rsvps_json)) {
+
+            $output .= '<div class="rsvps-wrapper">' . PHP_EOL;
+            $output .= '<h3>El JSON con la respuesta???</h3>' . PHP_EOL;
+            $output .= $event_raw->rsvps_json . PHP_EOL;
+            $output .= '</div>' . PHP_EOL;
+        }*/
         $output .= $this->core->return_nm_credit();
         $output .= '</div>' . PHP_EOL;
 

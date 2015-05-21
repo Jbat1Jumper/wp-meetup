@@ -121,6 +121,7 @@
     background-color: #9b181c
 }
 .meetup-backlink .date-wrapper,
+.meetup-backlink .rsvps-wrapper,
 .meetup-backlink .meetup-backlink-venue {
     background-color: #f0f0f0;
 }
