@@ -83,6 +83,20 @@ class WPMeetupAPI extends ApiInteraction {
                 $url .= '&' . $key . '=' . $value; 
             }
         }
+        else if ($category == 'rsvps'){
+            $defaults = array(
+                'order'=>'event',
+            );
+            $settings = array_merge($defaults, $parameters);
+
+            $url = 'https://api.meetup.com/2/rsvps.json?key=';
+
+            $url .= $this->key;
+
+            foreach ($settings as $key=>$value) {
+                $url .= '&' . $key . '=' . $value; 
+            }
+        }
         $body = $this->remote_get($url);
         $body = json_decode($body);
         return $body;
