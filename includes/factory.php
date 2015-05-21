@@ -159,7 +159,7 @@ class WPMeetupFactory {
         $event_link = $event->event_url;
 
         // Traduciendo fecha al espaNol
-        setlocale(LC_TIME, "es_ES");
+        $mylocale = setlocale(LC_TIME, "es_AR", "es_ES", "es_AR.utf8", "es_ES.utf8", "es_AR.UTF-8", "es_ES.UTF-8", "es");
         $event_date = strftime("%d de %B de %Y a las %k:%M", $event->event_time);
         // $event_date = date('l, d M Y g:i',$event->event_time);
 
@@ -171,6 +171,7 @@ class WPMeetupFactory {
             $event_suffix = ' AM';
         }
         $output = '';
+        $output .= '<!-- ' . $mylocale . '-->';
         $output .= '<div class="meetup-backlink">' . PHP_EOL;
         $output .= '<div class="button-wrapper">' . PHP_EOL;
         $output .= '<a href="' . $event_link  . '" class="button">' . __($this->core->options->get_option('link_name')) . '</a>' . PHP_EOL;
