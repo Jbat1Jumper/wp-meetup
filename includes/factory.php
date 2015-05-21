@@ -177,7 +177,7 @@ class WPMeetupFactory {
         $output .= '<a href="' . $event_link  . '" class="button">' . __($this->core->options->get_option('link_name')) . '</a>' . PHP_EOL;
         $output .= '</div>' . PHP_EOL;
         $output .= '<div class="date-wrapper">' . PHP_EOL;
-        $output .= '<h3>Date</h3>' . PHP_EOL;
+        $output .= '<h3>¿Cuándo?</h3>' . PHP_EOL;
         $output .= '<p>' . $event_date . '</p>' . PHP_EOL;
         $output .= '</div>' . PHP_EOL;
         if ($this->core->options->get_option('venue')) {
@@ -191,7 +191,7 @@ class WPMeetupFactory {
                 }
                 $event_map = '<a href="https://maps.google.com/?q=' . $event_raw->venue->lat . ',' . $event_raw->venue->lon . '">View Map</a>';
                 $output .= '<div class="meetup-backlink-venue">' . PHP_EOL;
-                $output .= '<h3>Venue</h3>' . PHP_EOL;
+                $output .= '<h3>¿Dónde?</h3>' . PHP_EOL;
                 $output .= '<p>' . $event_location . '</p>' . PHP_EOL;
                 $output .= '<div class="meetup-backlink-map">' . $event_map . '</div>' . PHP_EOL;
                 $output .= '</div>' . PHP_EOL;
