@@ -79,6 +79,9 @@ class WPMeetupFactory {
             $event->time = intval($event->time);
         }
         $event->utc_offset = 0;
+
+        // ACA SE LE PUEDE LLENAR AL EVENTO CON LA DATA DE LOS RSVP
+
         $data = array(
             'wpm_event_id' => $event->id,
             'event_time' => $event->time,
@@ -154,7 +157,12 @@ class WPMeetupFactory {
     function build_meetup_backlink($event) {
         $event_raw = unserialize($event->event);
         $event_link = $event->event_url;
-        $event_date = date('l, d M Y g:i',$event->event_time);
+
+        // Traduciendo fecha al espaNol
+        setlocale(LC_TIME, "es_ES");
+        $event_date = strftime("%d de %B de %Y a las %k:%M", $event->event_time);
+        // $event_date = date('l, d M Y g:i',$event->event_time);
+
         $event_suffix = date('H',$event->event_time);
         if ($event_suffix >= 12) {
             $event_suffix = ' PM';
